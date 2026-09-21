@@ -105,8 +105,5 @@ def generate_launch_description():
         nav2_behavior_server,
         nav2_smoother_server, 
         nav2_lifecycle_manager, 
-        twist_stamper_node
+        twist_stamper_node, 
         ])
-
-
-    
