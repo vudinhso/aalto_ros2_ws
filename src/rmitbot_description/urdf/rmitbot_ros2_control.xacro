@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot name="rmitbot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="is_sim" default="false" />
+    
+    <!-- Macro for the wheel -->
+    <xacro:macro name="wheel_control" params="prefix">
+        <joint name="wheel_${prefix}_joint">
+            <command_interface name="velocity" />
+            <state_interface name="position" />
+            <state_interface name="velocity" />
+        </joint>
+    </xacro:macro>
+
+
+    <xacro:macro name="rmit_ros2_control" params="is_sim">
+        <ros2_control name="RobotSystem" type="system">
+            <hardware>
+                <xacro:if value="${is_sim}">
+                    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+                </xacro:if>
+
+                <xacro:unless value="${is_sim}">
+                    <plugin>rmitbot_firmware/RmitbotInterface</plugin>
+                    <param name="port">/dev/esp32</param>
+                </xacro:unless>
+            </hardware>
+
+            <xacro:wheel_control prefix="left" />
+            <xacro:wheel_control prefix="right" />
+
+            <sensor name="imu_sensor">
+                <state_interface name="orientation.x" />
+                <state_interface name="orientation.y" />
+                <state_interface name="orientation.z" />
+                <state_interface name="orientation.w" />
+                <state_interface name="angular_velocity.x" />
+                <state_interface name="angular_velocity.y" />
+                <state_interface name="angular_velocity.z" />
+                <state_interface name="linear_acceleration.x" />
+                <state_interface name="linear_acceleration.y" />
+                <state_interface name="linear_acceleration.z" />
+            </sensor>
+
+        </ros2_control>
+    </xacro:macro>
+
+    <xacro:rmit_ros2_control is_sim="$(arg is_sim)" />
+ 
+    <gazebo>
+        <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+            <parameters>$(find rmitbot_controller)/config/rmitbot_controller.yaml</parameters>
+        </plugin>
+    </gazebo>
+
+</robot>

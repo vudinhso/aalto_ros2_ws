@@ -1,0 +1,26 @@
+# apriltag_node:
+/**:
+  ros__parameters:
+    image_transport: raw
+    family: 36h11
+    # size: 0.1296 
+    # size: 0.117 # measure from outer black border
+    max_hamming: 0
+    profile: false        # print profiling information to stdout
+
+    detector:
+      threads: 4          # number of threads
+      decimate: 1.0       # decimate resolution for quad detection
+      blur: 0.5           # sigma of Gaussian blur for quad detection
+      refine: true           # snap to strong gradients
+      sharpening: 0.25    # sharpening of decoded images
+      debug: false            # write additional debugging images to current working directory
+    
+    pose_estimation_method: "pnp" # method for estimating the tag pose
+
+    tag: 
+      # ids: [0, 1]            # tag ID
+      ids: [0]            # tag ID
+      # frames: [apriltag_36h11_0, apriltag_36h11_1]  # optional frame name
+      frames: [apriltag_0]
+      sizes: [0.2]   # optional tag-specific edge size

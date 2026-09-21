@@ -1,0 +1,13 @@
+twist_mux_node: 
+  ros__parameters: 
+    use_stamped: true 
+    cmd_vel: /cmd_vel # Output topic for velocity commands 
+    topics: 
+      foxglove: 
+        topic: /cmd_vel_foxglove # Input topic for keyboard commands 
+        priority: 20 
+        timeout: 0.5 
+      navigation: 
+        topic: /cmd_vel_navigation # Input topic for navigation commands 
+        priority: 5 
+        timeout: 0.5 

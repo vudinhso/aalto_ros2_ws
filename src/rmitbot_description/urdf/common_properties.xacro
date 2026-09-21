@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<robot name="rmitbot" xmlns:xacro="http://www.ros.org/wiki/xacro"
+    xmlns:gz="http://gazebosim.org/schema">
+
+    <!-- Color of the robot -->
+    <material name="red">
+        <color rgba="1.0 0.0 0.0 1.0" />
+    </material>
+
+    <material name="green">
+        <color rgba="0.0 0.8 0.0 1.0" />
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1.0 1.0" />
+    </material>
+
+    <material name="yellow">
+        <color rgba="1.0 1.0 0.0 1.0" />
+    </material>
+
+    <material name="magenta">
+        <color rgba="1.0 0.0 1.0 1.0" />
+    </material>
+
+    <material name="cyan">
+        <color rgba="0.0 1.0 1.0 1.0" />
+    </material>
+
+    <material name="dark_grey">
+        <color rgba="0.2 0.2 0.2 1.0" />
+    </material>
+
+    <material name="white_blue">
+        <color rgba="0.8 0.9 1.0 1.0" />
+    </material>
+
+    <!-- Dimension of the robot -->
+    <xacro:property name="base_mass" value="1.0" />
+    <xacro:property name="base_length" value="0.150" />
+    <xacro:property name="base_width" value="0.150" />
+    <xacro:property name="base_height" value="0.055" />
+
+    <xacro:property name="wheel_mass" value="0.053" />
+    <xacro:property name="wheel_radius" value="0.0425" />
+    <xacro:property name="wheel_thickness" value="0.042" />
+
+    <!-- macro for calculating inertia -->
+    <xacro:macro name="box_inertia" params="m x y z">
+        <inertia ixx="${(m/12) * (y*y + z*z)}" ixy="0.0" ixz="0.0"
+            iyy="${(m/12) * (x*x + z*z)}" iyz="0.0"
+            izz="${(m/12) * (x*x + y*y)}" />
+    </xacro:macro>
+
+
+    <xacro:macro name="cylinder_inertia" params="m r h">
+        <inertia ixx="${(m/12) * (3*r*r + h*h)}" ixy="0" ixz="0"
+            iyy="${(m/12) * (3*r*r + h*h)}" iyz="0"
+            izz="${(m/2) * (r*r)}" />
+    </xacro:macro>
+
+</robot>

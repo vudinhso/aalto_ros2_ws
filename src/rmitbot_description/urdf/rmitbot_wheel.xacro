@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<robot name="rmitbot" xmlns:xacro="http://www.ros.org/wiki/xacro"
+  xmlns:gz="http://gazebosim.org/schema">
+
+  <!-- Reusable Wheel Macro -->
+  <xacro:macro name="wheel" params="prefix x_reflect y_reflect">
+    <link name="wheel_${prefix}_link">
+      <visual>
+        <origin xyz="0.005 ${-y_reflect*0.02} 0" rpy="${-y_reflect*pi/2} 0 0" />
+        <geometry>
+          <mesh filename="package://rmitbot_description/meshes/wheel_${prefix}_link.STL" />
+        </geometry>
+        <material name="magenta" />
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <!-- <cylinder radius="${wheel_radius}" length="${wheel_thickness}" /> -->
+           <sphere radius="${wheel_radius}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="${wheel_mass}" />
+        <xacro:cylinder_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_thickness}" />
+      </inertial>
+    </link>
+
+    <joint name="wheel_${prefix}_joint" type="continuous">
+      <parent link="base_link" />
+      <child link="wheel_${prefix}_link" />
+      <origin
+        xyz="${x_reflect * (base_length / 3)} ${y_reflect * (base_width / 2 + wheel_thickness/2)} -0.010"
+        rpy="-${pi/2} 0 0" />
+      <axis xyz="0 0 1" />
+      <dynamics damping="0.2" />
+    </joint>
+
+    <gazebo reference="wheel_${prefix}_link">
+      <mu1>1000000.0</mu1>
+      <mu2>1000000.0</mu2>
+      <kp>1000000.0</kp> <!-- 1e6 is plenty stiff for a lightweight robot -->
+      <kd>100.0</kd>
+      <minDepth>0.001</minDepth>
+      <maxVel>0.1</maxVel>
+      <fdir1>1 0 0</fdir1>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:wheel prefix="left" x_reflect="-1" y_reflect="1" />
+  <xacro:wheel prefix="right" x_reflect="-1" y_reflect="-1" />
+
+  <link name="caster_wheel_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.05" />
+      <inertia
+        ixx="0.000008" ixy="0.0" ixz="0.0"
+        iyy="0.000008" iyz="0.0"
+        izz="0.000008" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://rmitbot_description/meshes/caster_wheel_link.STL" />
+      </geometry>
+      <material name="dark_grey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <sphere radius="0.020" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_wheel_joint" type="fixed">
+    <origin xyz="${base_length/2-0.01} 0 ${-base_height/2}" rpy="0 ${-pi} ${-pi/2}" />
+    <parent link="base_link" />
+    <child link="caster_wheel_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+  <gazebo reference="caster_wheel_link">
+    <mu1>0.01</mu1>
+    <mu2>0.01</mu2>
+    <kp>1000000.0</kp>
+    <kd>100.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>1.0</maxVel>
+  </gazebo>
+
+</robot>

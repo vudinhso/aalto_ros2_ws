@@ -1,0 +1,10 @@
+/**:
+  ros__parameters:
+    port: 8765
+    address: "0.0.0.0"
+    tls: false
+    # Crucial: Allow streaming package:// URIs so Foxglove can fetch STL files
+    asset_uri_allowlist: ["^package://.*"]
+    # 100 MB buffer: Prevents connection dropouts when transferring large STL meshes
+    send_buffer_limit: 100000000
+    max_channel_message_size: 10000000

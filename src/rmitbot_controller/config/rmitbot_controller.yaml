@@ -1,0 +1,32 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # in Hz
+    use_sim_time: false # real hardware does not use sim_time
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    diff_drive_controller:
+      type: diff_drive_controller/DiffDriveController
+
+    imu_sensor_broadcaster:
+      type: imu_sensor_broadcaster/IMUSensorBroadcaster
+
+diff_drive_controller:
+  ros__parameters: 
+    cmd_vel_timeout: 0.5
+    use_stamped_vel: true
+    left_wheel_names: ["wheel_left_joint"]
+    right_wheel_names: ["wheel_right_joint"]
+    wheel_separation: 0.192      # Distance between left and right wheels (in meters)
+    wheel_radius: 0.0425         # Radius of the wheels (in meters)
+
+    base_frame_id: "base_footprint"
+    odom_frame_id: "odom"
+    enable_odom_tf: false # Set to true if not using robot_localization (EKF)
+
+imu_sensor_broadcaster:
+  ros__parameters:
+    sensor_name: "imu_sensor"
+    frame_id:  "imu_link"
+    topic_name: "/imu/data"
