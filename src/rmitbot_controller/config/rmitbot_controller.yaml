@@ -18,8 +18,14 @@ diff_drive_controller:
     use_stamped_vel: true
     left_wheel_names: ["wheel_left_joint"]
     right_wheel_names: ["wheel_right_joint"]
-    wheel_separation: 0.192      # Distance between left and right wheels (in meters)
-    wheel_radius: 0.0425         # Radius of the wheels (in meters)
+    # =====================================================
+    # To be modified
+    # =====================================================
+    wheel_separation: 0.000 # To be modified: Distance between left and right wheels (in meters)
+    wheel_radius: 0.000 # To be modified: Radius of the wheels (in meters) 
+    # =====================================================
+    # To be modified
+    # =====================================================
 
     base_frame_id: "base_footprint"
     odom_frame_id: "odom"

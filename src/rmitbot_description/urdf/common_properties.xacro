@@ -2,6 +2,7 @@
 <robot name="rmitbot" xmlns:xacro="http://www.ros.org/wiki/xacro"
     xmlns:gz="http://gazebosim.org/schema">
 
+    <!-- ===================To be modified (optional but fun)============================ -->
     <!-- Color of the robot -->
     <material name="red">
         <color rgba="1.0 0.0 0.0 1.0" />
@@ -34,7 +35,9 @@
     <material name="white_blue">
         <color rgba="0.8 0.9 1.0 1.0" />
     </material>
+    <!-- ===================To be modified (optional but fun)============================ -->
 
+    <!-- ===================To be modified============================ -->
     <!-- Dimension of the robot -->
     <xacro:property name="base_mass" value="1.0" />
     <xacro:property name="base_length" value="0.150" />
@@ -44,6 +47,7 @@
     <xacro:property name="wheel_mass" value="0.053" />
     <xacro:property name="wheel_radius" value="0.0425" />
     <xacro:property name="wheel_thickness" value="0.042" />
+    <!-- ===================To be modified============================ -->
 
     <!-- macro for calculating inertia -->
     <xacro:macro name="box_inertia" params="m x y z">
