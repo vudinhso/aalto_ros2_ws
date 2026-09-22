@@ -1,8 +1,8 @@
+# ros2 launch rmitbot_mapping rplidar.launch.py
+
 import os
 from launch import LaunchDescription
 from launch_ros.actions import Node
-
-# ros2 launch rmitbot_mapping rplidar.launch.py
 
 def generate_launch_description():
     # ==========================================

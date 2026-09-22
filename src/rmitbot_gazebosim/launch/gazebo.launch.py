@@ -1,3 +1,6 @@
+# ros2 launch rmitbot_gazebosim gazebo.launch.py
+# xvfb-run -a ros2 launch rmitbot_gazebosim gazebo.launch.py
+
 import os
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
@@ -9,9 +12,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
-# Launch the file
-# ros2 launch rmitbot_gazebosim gazebo.launch.py
-# xvfb-run -a ros2 launch rmitbot_gazebosim gazebo.launch.py
+
 
 def generate_launch_description():
     # Path to the package

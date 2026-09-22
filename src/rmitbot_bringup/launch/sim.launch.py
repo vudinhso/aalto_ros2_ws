@@ -1,11 +1,9 @@
-# Launch this file to use Gazebo with the robot
 # ros2 launch rmitbot_bringup sim.launch.py
 
 import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, TimerAction, ExecuteProcess
 from ament_index_python.packages import get_package_share_directory
-
 
 def generate_launch_description():
     

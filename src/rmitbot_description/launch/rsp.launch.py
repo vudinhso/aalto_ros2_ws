@@ -1,3 +1,5 @@
+# ros2 launch rmitbot_description rsp.launch.py is_sim:=true
+
 import os
 from launch import LaunchDescription
 from launch_ros.actions import Node
@@ -5,9 +7,6 @@ from launch.actions import DeclareLaunchArgument
 from ament_index_python.packages import get_package_share_directory
 from launch_ros.parameter_descriptions import ParameterValue
 from launch.substitutions import Command, LaunchConfiguration
-
-# Launch the file
-# ros2 launch rmitbot_description rsp.launch.py is_sim:=true
 
 def generate_launch_description():
     # ==========================================

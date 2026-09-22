@@ -1,4 +1,3 @@
-# Launch this file for navigation
 # ros2 launch rmitbot_navigation nav.launch.py
 
 import os
@@ -7,7 +6,6 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-
 
 def generate_launch_description():
     is_sim = LaunchConfiguration('is_sim')

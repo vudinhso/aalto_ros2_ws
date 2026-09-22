@@ -1,3 +1,7 @@
+# use docker container: sudo docker run --name foxglove_web -d --restart unless-stopped -p 8080:8080 ghcr.io/lichtblick-suite/lichtblick:latest
+# ros2 launch rmitbot_description foxglove.launch.py
+# connect to http://127.0.0.1:8080/
+
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
@@ -5,9 +9,7 @@ from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-# use docker container: sudo docker run --name foxglove_web -d --restart unless-stopped -p 8080:8080 ghcr.io/lichtblick-suite/lichtblick:latest
-# ros2 launch rmitbot_description foxglove.launch.py
-# connect to http://127.0.0.1:8080/
+
 
 def generate_launch_description():
     # Replace with your actual package name where config/foxglove_bridge.yaml lives
