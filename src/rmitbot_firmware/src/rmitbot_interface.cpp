@@ -78,6 +78,12 @@ namespace rmitbot_firmware
       return CallbackReturn::FAILURE;
     }
 
+    // Allow the bootloader to finish resetting and start loop()
+    RCLCPP_INFO(rclcpp::get_logger("RmitbotInterface"), "Waiting for microcontroller to complete bootloader reset...");
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    RCLCPP_INFO(rclcpp::get_logger("RmitbotInterface"), "Microcontroller ready!");
+
     RCLCPP_INFO(rclcpp::get_logger("RmitbotInterface"), "Hardware started, ready to take commands");
     return CallbackReturn::SUCCESS;
   }
